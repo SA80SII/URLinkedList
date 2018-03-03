@@ -83,11 +83,7 @@ public class URLinkedList<E> implements URList<E>{
 
 	@Override
 	public E get(int index) {
-<<<<<<< HEAD
-		//Creat node, traverse through while adding to i, when i = index, return node
-		// TODO Auto-generated method stub
-		return null;
-=======
+
 	URNode<E> curr = head;
 	if (index < 0 || index >= size) {
 		throw new IndexOutOfBoundsException();
@@ -99,7 +95,6 @@ public class URLinkedList<E> implements URList<E>{
 		}
 		return curr.element();		
 	}
->>>>>>> 039af6e0ad4047db6c25a6c47ba08358497e318b
 	}
 
 	@Override
