@@ -142,14 +142,20 @@ public class URLinkedList<E> implements URList<E>{
 
 	@Override
 	public E remove(int index) {
-		// TODO Auto-generated method stub
-		URNode<E> rem;
-		return null;
+		URNode<E> curr = head;
+		int i = 0;
+		while(i != index-1) {
+			curr = curr.next();
+			i++;
+		}
+		curr.setNext(curr.next().next());
+		size--;
+		return curr.element();
 	}
 
 	@Override
 	public boolean remove(Object o) {
-		// TODO Auto-generated method stub
+		remove(o);
 		return false;
 	}
 
