@@ -51,8 +51,17 @@ public class URLinkedList<E> implements URList<E>{
 
 	@Override
 	public E get(int index) {
-		// TODO Auto-generated method stub
-		return null;
+	URNode<E> curr = head;
+	if (index < 0 || index >= size) {
+		throw new IndexOutOfBoundsException();
+	}
+	else {
+		int i = 0;
+		while(i != index) {
+			curr = curr.next();
+		}
+		return curr.element();		
+	}
 	}
 
 	@Override
@@ -142,11 +151,11 @@ public class URLinkedList<E> implements URList<E>{
 		final URNode<E> f = head;
 		final URNode<E> newNode = new URNode<E>(e,null,f);
 		head = newNode;
-		if (f==null) {
-			tail = newNode;
+		if (head==null) {
+			head=tail = newNode;
 		}
 		else {
-			f.setPrev(newNode);
+			head.setPrev(newNode);
 		}
 		size++;
 		
@@ -155,12 +164,11 @@ public class URLinkedList<E> implements URList<E>{
 	public void addLast(E e) {
 		final URNode<E> t = tail;
 		final URNode<E> newNode = new URNode<E>(e,t,null);
-		tail = newNode;
-		if (t == null) {
-			tail = newNode;	
+		if (head == null) {
+			head = tail = newNode;	
 		}
 		else {
-		t.setNext(newNode);
+		tail.setNext(newNode);
 		}
 		size++;
 	}
