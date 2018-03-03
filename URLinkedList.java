@@ -18,17 +18,15 @@ public class URLinkedList<E> implements URList<E>{
 
 		URNode<E> first = head;
 		URNode<E> secn;
-		URNode<E> thir=new URNode();
+		URNode<E> thir;
 		if (head==null){
 			head.setElement(element);
 			tail.setElement(element);
 		}
 		else if (index==(size()-1)){
 			first=tail.prev();
-			secn.setPrev(first);
-			secn.setElement(element);
+			secn=new URNode<E>(element,first,tail);
 			first.setNext(secn);
-			secn.setNext(tail);
 			tail.setPrev(secn);
 		}
 		else {
