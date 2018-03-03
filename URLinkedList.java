@@ -69,8 +69,31 @@ public class URLinkedList<E> implements URList<E>{
 
 	@Override
 	public Iterator iterator() {
-		// TODO Auto-generated method stub
-		return null;
+		return new URLinkedListIterator();
+	}
+	
+	private class URLinkedListIterator implements Iterator<E> {
+		URNode<E> curr;
+		public URLinkedListIterator() {
+			curr = head;
+		}
+
+		@Override
+		public boolean hasNext() {
+			if(curr.next() != null){
+				return true;
+			}
+		return false;
+		}
+
+		@Override
+		public E next() {
+			if(hasNext()){
+				curr = curr.next();
+			}
+			return curr.element();
+		}
+		
 	}
 
 	@Override
@@ -164,3 +187,4 @@ public class URLinkedList<E> implements URList<E>{
 	}
 
 }
+
