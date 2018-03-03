@@ -17,53 +17,38 @@ public class URLinkedList<E> implements URList<E>{
 	@Override
 	public void add(int index, E element) {
 
-		URNode<E> first = new URNode<E>(null,null,null);
-		URNode<E> secn = new URNode<E>(null,null,null);
-		URNode<E> thir = new URNode<E>(null,null,null);
-		int c=0;
-		if (index!=0&&(index<0||index>=size())){
-			c++;
-			throw new IndexOutOfBoundsException();		
+		URNode<E> first = head;
+		URNode<E> secn;
+		URNode<E> thir;
+		if (head==null){
+			head.setElement(element);
+			tail.setElement(element);
 		}
-		if (index==0){
-			first=head;
-			secn=new URNode<E>(element,null,first);
-			first.setPrev(secn);
-			head=secn;
-		}
-		
 		else if (index==(size()-1)){
 			first=tail.prev();
-			secn=new URNode<E>(element,first,tail);
-			first.setNext(secn);
-			tail.setPrev(secn);
+			secn.setPrev(first);
+			secn.setElement(element);
+			first = secn.prev();
+			tail = secn.next();
+			secn = tail.prev();
 		}
 		else {
 			URLinkedListIterator i = new URLinkedListIterator();
 			int counter=0;
-			first=head;
 			while (i.hasNext()==true && counter<index){
 				counter++;
 				first.next();
 			}
 			secn=first.prev();
-			thir=new URNode<E>(null,null);
-			thir.setElement(element);
-			thir.setPrev(secn);
-			thir.setNext(first);
-			first.setPrev(thir);
-			secn.setNext(thir);
-			
-			
+			thir.prev()=secn;
 			
 			
 			
 		first.setElement(element);
 		}
-		size+=1-c;
+
 		
 	}
-	
 
 	@Override
 	public boolean addAll(Collection c) {
@@ -163,7 +148,7 @@ public class URLinkedList<E> implements URList<E>{
 			curr = curr.next();
 			i++;
 		}
-		curr.setNext(curr.next().next());
+		curr.setNext(curr.next().next());	
 		size--;
 		return curr.element();
 	}
@@ -171,7 +156,7 @@ public class URLinkedList<E> implements URList<E>{
 	@Override
 	public boolean remove(Object o) {
 		remove(o);
-		return false;
+		return true;
 	}
 
 	@Override
