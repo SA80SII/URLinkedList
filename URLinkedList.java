@@ -23,6 +23,9 @@ public class URLinkedList<E> implements URList<E>{
 			first.setElement(element);
 			head=tail=first;
 		}
+		else if (index<0||index>=size()){
+			throw new IndexOutOfBoundsException();
+		}
 		else if (index==(size()-1)){
 			first=tail.prev();
 			secn=new URNode<E>(element,first,tail);
