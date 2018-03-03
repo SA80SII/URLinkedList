@@ -15,7 +15,7 @@ public class URLinkedList<E> implements URList<E>{
 
 	@Override
 	public void add(int index, E element) {
-<<<<<<< HEAD
+
 		URNode<E> first = head;
 		URNode<E> secn;
 		URNode<E> thir;
@@ -45,9 +45,7 @@ public class URLinkedList<E> implements URList<E>{
 			
 		first.setElement(element);
 		}
-=======
-		
->>>>>>> 039af6e0ad4047db6c25a6c47ba08358497e318b
+
 		
 	}
 
