@@ -16,12 +16,12 @@ public class URLinkedList<E> implements URList<E>{
 	@Override
 	public void add(int index, E element) {
 
-		URNode<E> first = head;
+		URNode<E> first = new URNode<E>(null,null);
 		URNode<E> secn;
 		URNode<E> thir;
 		if (head==null){
-			head.setElement(element);
-			tail.setElement(element);
+			first.setElement(element);
+			head=tail=first;
 		}
 		else if (index==(size()-1)){
 			first=tail.prev();
