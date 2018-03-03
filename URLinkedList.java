@@ -162,6 +162,7 @@ public class URLinkedList<E> implements URList<E>{
 			curr = curr.next();
 			i++;
 		}
+		
 		// need an if statement
 		curr.setNext(curr.next().next());	
 		size--;
