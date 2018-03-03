@@ -4,10 +4,14 @@ public class TestClass {
 
 	public static <E> void main(String[] args) {
 		URLinkedList<Integer> list = new URLinkedList<Integer>();
+<<<<<<< HEAD
 		list.add(2);
 		list.add(3);
 		list.add(99999);
 
+=======
+		list.add(0,4);
+>>>>>>> dfb7c67399907b1b0c7c3b92a75ba5ed053642a2
 		System.out.println(list.get(0));
 		list.addFirst(0);
 		System.out.println(list.get(0));

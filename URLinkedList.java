@@ -16,20 +16,18 @@ public class URLinkedList<E> implements URList<E>{
 	@Override
 	public void add(int index, E element) {
 
-		URNode<E> first = head;
+		URNode<E> first = new URNode<E>(null,null);
 		URNode<E> secn;
 		URNode<E> thir;
 		if (head==null){
-			head.setElement(element);
-			tail.setElement(element);
+			first.setElement(element);
+			head=tail=first;
 		}
 		else if (index==(size()-1)){
 			first=tail.prev();
-			secn.setPrev(first);
-			secn.setElement(element);
-			first = secn.prev();
-			tail = secn.next();
-			secn = tail.prev();
+			secn=new URNode<E>(element,first,tail);
+			first.setNext(secn);
+			tail.setPrev(secn);
 		}
 		else {
 			URLinkedListIterator i = new URLinkedListIterator();
@@ -39,7 +37,10 @@ public class URLinkedList<E> implements URList<E>{
 				first.next();
 			}
 			secn=first.prev();
-			thir.prev()=secn;
+			thir=new URNode<E>(element, secn, first);
+			secn.setNext(thir);
+			first.setPrev(thir);
+			
 			
 			
 			
