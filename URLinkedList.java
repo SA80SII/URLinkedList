@@ -11,6 +11,7 @@ public class URLinkedList<E> implements URList<E>{
 	public boolean add(E e) {
 		addLast(e);
 		return true;
+		///you suck
 	}
 
 	@Override
