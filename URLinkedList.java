@@ -10,12 +10,12 @@ public class URLinkedList<E> implements URList<E>{
 	@Override
 	public boolean add(E e) {
 		addLast(e);
-		return true;
-		///you suck
+		return true;	
 	}
 
 	@Override
 	public void add(int index, E element) {
+<<<<<<< HEAD
 		URNode<E> first = head;
 		URNode<E> secn;
 		URNode<E> thir;
@@ -45,6 +45,9 @@ public class URLinkedList<E> implements URList<E>{
 			
 		first.setElement(element);
 		}
+=======
+		
+>>>>>>> 039af6e0ad4047db6c25a6c47ba08358497e318b
 		
 	}
 
@@ -80,9 +83,23 @@ public class URLinkedList<E> implements URList<E>{
 
 	@Override
 	public E get(int index) {
+<<<<<<< HEAD
 		//Creat node, traverse through while adding to i, when i = index, return node
 		// TODO Auto-generated method stub
 		return null;
+=======
+	URNode<E> curr = head;
+	if (index < 0 || index >= size) {
+		throw new IndexOutOfBoundsException();
+	}
+	else {
+		int i = 0;
+		while(i != index) {
+			curr = curr.next();
+		}
+		return curr.element();		
+	}
+>>>>>>> 039af6e0ad4047db6c25a6c47ba08358497e318b
 	}
 
 	@Override
@@ -154,7 +171,7 @@ public class URLinkedList<E> implements URList<E>{
 	@Override
 	public int size() {
 		// TODO Auto-generated method stub
-		return 0;
+		return size;
 	}
 
 	@Override
@@ -173,11 +190,11 @@ public class URLinkedList<E> implements URList<E>{
 		final URNode<E> f = head;
 		final URNode<E> newNode = new URNode<E>(e,null,f);
 		head = newNode;
-		if (f==null) {
-			tail = newNode;
+		if (head==null) {
+			head=tail = newNode;
 		}
 		else {
-			f.setPrev(newNode);
+			head.setPrev(newNode);
 		}
 		size++;
 		
@@ -186,12 +203,11 @@ public class URLinkedList<E> implements URList<E>{
 	public void addLast(E e) {
 		final URNode<E> t = tail;
 		final URNode<E> newNode = new URNode<E>(e,t,null);
-		tail = newNode;
-		if (t == null) {
-			tail = newNode;	
+		if (head == null) {
+			head = tail = newNode;	
 		}
 		else {
-		t.setNext(newNode);
+		tail.setNext(newNode);
 		}
 		size++;
 	}
