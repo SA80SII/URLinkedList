@@ -15,8 +15,36 @@ public class URLinkedList<E> implements URList<E>{
 	}
 
 	@Override
-	public void add(int index, Object element) {
-		// TODO Auto-generated method stub
+	public void add(int index, E element) {
+		URNode<E> first = head;
+		URNode<E> secn;
+		URNode<E> thir;
+		if (head==null){
+			head.setElement(element);
+			tail.setElement(element);
+		}
+		else if (index==(size()-1)){
+			first=tail.prev();
+			secn.setPrev(first);
+			secn.setElement(element);
+			first = secn.prev();
+			tail = secn.next();
+			secn = tail.prev();
+		}
+		else {
+			URLinkedListIterator i = new URLinkedListIterator();
+			int counter=0;
+			while (i.hasNext()==true && counter<index){
+				counter++;
+				first.next();
+			}
+			secn=first.prev();
+			thir.prev()=secn;
+			
+			
+			
+		first.setElement(element);
+		}
 		
 	}
 
@@ -52,6 +80,7 @@ public class URLinkedList<E> implements URList<E>{
 
 	@Override
 	public E get(int index) {
+		//Creat node, traverse through while adding to i, when i = index, return node
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -100,6 +129,7 @@ public class URLinkedList<E> implements URList<E>{
 	@Override
 	public E remove(int index) {
 		// TODO Auto-generated method stub
+		URNode<E> rem;
 		return null;
 	}
 
