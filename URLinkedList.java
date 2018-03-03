@@ -1,6 +1,7 @@
 import java.util.Collection;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 public class URLinkedList<E> implements URList<E>{
 	 transient URNode<E> head;
 	 transient URNode<E> tail;
@@ -16,6 +17,7 @@ public class URLinkedList<E> implements URList<E>{
 	@Override
 	public void add(int index, E element) {
 
+<<<<<<< HEAD
 		URNode<E> first = new URNode<E>(null,null,null);
 		URNode<E> secn = new URNode<E>(null,null,null);
 		URNode<E> thir = new URNode<E>(null,null,null);
@@ -29,13 +31,23 @@ public class URLinkedList<E> implements URList<E>{
 			secn=new URNode<E>(element,null,first);
 			first.setPrev(secn);
 			head=secn;
+=======
+		URNode<E> first = head;
+		URNode<E> secn;
+		URNode<E> thir;
+		if (head==null){
+			head.setElement(element);
+			tail.setElement(element);
+>>>>>>> b517ad308a18feb77f971c3e867e38d01e4deb90
 		}
 		
 		else if (index==(size()-1)){
 			first=tail.prev();
-			secn=new URNode<E>(element,first,tail);
-			first.setNext(secn);
-			tail.setPrev(secn);
+			secn.setPrev(first);
+			secn.setElement(element);
+			first = secn.prev();
+			tail = secn.next();
+			secn = tail.prev();
 		}
 		else {
 			URLinkedListIterator i = new URLinkedListIterator();
@@ -46,6 +58,7 @@ public class URLinkedList<E> implements URList<E>{
 				first.next();
 			}
 			secn=first.prev();
+<<<<<<< HEAD
 			thir=new URNode<E>(null,null);
 			thir.setElement(element);
 			thir.setPrev(secn);
@@ -54,6 +67,9 @@ public class URLinkedList<E> implements URList<E>{
 			secn.setNext(thir);
 			
 			
+=======
+			thir.prev()=secn;
+>>>>>>> b517ad308a18feb77f971c3e867e38d01e4deb90
 			
 			
 			
@@ -95,7 +111,9 @@ public class URLinkedList<E> implements URList<E>{
 
 	@Override
 	public E get(int index) {
-
+	if(head== null) {
+		throw new NoSuchElementException();
+	}
 	URNode<E> curr = head;
 	if (index < 0 || index >= size) {
 		throw new IndexOutOfBoundsException();
@@ -104,6 +122,7 @@ public class URLinkedList<E> implements URList<E>{
 		int i = 0;
 		while(i != index) {
 			curr = curr.next();
+			i++;
 		}
 		return curr.element();		
 	}
@@ -193,7 +212,7 @@ public class URLinkedList<E> implements URList<E>{
 		URNode<E> f = head;
 		for(int i = 0; i< size; i++) {
 			array[i] = f.element();
-			f = head.next();
+			f = f.next();
 		}
 		return array;
 	}
@@ -214,13 +233,14 @@ public class URLinkedList<E> implements URList<E>{
 	}
 	// Appends the specified element to the end of this list.
 	public void addLast(E e) {
-		final URNode<E> t = tail;
-		final URNode<E> newNode = new URNode<E>(e,t,null);
+		URNode<E> newNode = new URNode<E>(e,tail,null);
 		if (head == null) {
-			head = tail = newNode;	
+			head = newNode;	
+			tail = head;
 		}
 		else {
 		tail.setNext(newNode);
+		tail = newNode;
 		}
 		size++;
 	}
