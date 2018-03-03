@@ -203,12 +203,15 @@ public class URLinkedList<E> implements URList<E>{
 	public void addLast(E e) {
 		final URNode<E> t = tail;
 		final URNode<E> newNode = new URNode<E>(e,t,null);
-		if (head == null) {
+		if (tail == null) {
 			head = tail = newNode;	
 		}
-		else {
-		tail.setNext(newNode);
+		while (tail.next().element() != null) {
+			tail = tail.next();
 		}
+		newNode.setNext(null);
+		newNode.setPrev(tail);
+		tail.setNext(newNode);
 		size++;
 	}
 	

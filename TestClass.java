@@ -10,7 +10,7 @@ public class TestClass {
 
 		System.out.println(list.get(0));
 		list.addFirst(0);
-		System.out.println(list.get(1));
+		System.out.println(list.get(0));
 		System.out.println(Arrays.toString(list.toArray()));
 			}
 
