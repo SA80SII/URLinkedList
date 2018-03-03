@@ -49,7 +49,7 @@ public class URLinkedList<E> implements URList<E>{
 	}
 
 	@Override
-	public Object get(int index) {
+	public E get(int index) {
 		// TODO Auto-generated method stub
 		return null;
 	}
