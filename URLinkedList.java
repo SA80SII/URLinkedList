@@ -179,9 +179,15 @@ public class URLinkedList<E> implements URList<E>{
 
 	@Override
 	public Object[] toArray() {
-		// TODO Auto-generated method stub
-		return null;
+		Object [] array = new Object[size];
+		URNode<E> f = head;
+		for(int i = 0; i< size; i++) {
+			array[i] = f.element();
+			f = head.next();
+		}
+		return array;
 	}
+	// In
 	// Inserts the specified element at the beginning of this list.
 	public void addFirst(E e) {
 		final URNode<E> f = head;
