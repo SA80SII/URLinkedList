@@ -17,26 +17,20 @@ public class URLinkedList<E> implements URList<E>{
 	@Override
 	public void add(int index, E element) {
 
-		URNode<E> first = new URNode<E>(null,null,null);
-		URNode<E> secn = new URNode<E>(null,null,null);
-		URNode<E> thir = new URNode<E>(null,null,null);
-		int c=0;
-		if (index!=0&&(index<0||index>=size())){
-			c++;
-			throw new IndexOutOfBoundsException();		
+		URNode<E> first = head;
+		URNode<E> secn;
+		URNode<E> thir;
+		if (head==null){
+			head.setElement(element);
+			tail.setElement(element);
 		}
-		if (index==0){
-			first=head;
-			secn=new URNode<E>(element,null,first);
-			first.setPrev(secn);
-			head=secn;
-		}
-		
 		else if (index==(size()-1)){
 			first=tail.prev();
-			secn=new URNode<E>(element,first,tail);
-			first.setNext(secn);
-			tail.setPrev(secn);
+			secn.setPrev(first);
+			secn.setElement(element);
+			first = secn.prev();
+			tail = secn.next();
+			secn = tail.prev();
 		}
 		else {
 			first=head;
@@ -56,12 +50,15 @@ public class URLinkedList<E> implements URList<E>{
 			first.setPrev(thir);
 			secn.setNext(thir);
 	
+			thir.prev()=secn;
+			
+			
+			
 		first.setElement(element);
 		}
-		size+=1-c;
+
 		
 	}
-	
 
 	@Override
 	public boolean addAll(Collection c) {
@@ -158,12 +155,23 @@ public class URLinkedList<E> implements URList<E>{
 		// TODO Auto-generated method stub
 		URNode<E> rem;
 		return null;
+		URNode<E> curr = head;
+		int i = 0;
+		while(i != index-1) {
+			curr = curr.next();
+			i++;
+		}
+		curr.setNext(curr.next().next());	
+		size--;
+		return curr.element();
 	}
 
 	@Override
 	public boolean remove(Object o) {
 		// TODO Auto-generated method stub
 		return false;
+		remove(o);
+		return true;
 	}
 
 	@Override
