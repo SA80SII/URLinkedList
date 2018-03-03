@@ -10,13 +10,12 @@ public class URLinkedList<E> implements URList<E>{
 	@Override
 	public boolean add(E e) {
 		addLast(e);
-		return true;
-		///you suck
+		return true;	
 	}
 
 	@Override
-	public void add(int index, Object element) {
-		// TODO Auto-generated method stub
+	public void add(int index, E element) {
+		
 		
 	}
 
@@ -101,7 +100,7 @@ public class URLinkedList<E> implements URList<E>{
 	@Override
 	public int size() {
 		// TODO Auto-generated method stub
-		return 0;
+		return size;
 	}
 
 	@Override
