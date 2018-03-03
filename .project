@@ -5,6 +5,13 @@
 	<projects>
 	</projects>
 	<buildSpec>
+<<<<<<< HEAD
+<<<<<<< HEAD
+	</buildSpec>
+	<natures>
+=======
+=======
+>>>>>>> 0f9d7fbdaa717c1d6733557859a3c8eeee400dea
 		<buildCommand>
 			<name>org.eclipse.jdt.core.javabuilder</name>
 			<arguments>
@@ -13,5 +20,9 @@
 	</buildSpec>
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
+<<<<<<< HEAD
+>>>>>>> 0f9d7fbdaa717c1d6733557859a3c8eeee400dea
+=======
+>>>>>>> 0f9d7fbdaa717c1d6733557859a3c8eeee400dea
 	</natures>
 </projectDescription>
