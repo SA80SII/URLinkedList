@@ -39,13 +39,15 @@ public class URLinkedList<E> implements URList<E>{
 			tail.setPrev(secn);
 		}
 		else {
-			URLinkedListIterator i = new URLinkedListIterator();
+			first=head;
 			int counter=0;
+			URLinkedListIterator i = new URLinkedListIterator();
 			first=head;
 			while (i.hasNext()==true && counter<index){
 				counter++;
-				first.next();
+				first = first.next();
 			}
+			
 			secn=first.prev();
 			thir=new URNode<E>(null,null);
 			thir.setElement(element);
@@ -53,11 +55,7 @@ public class URLinkedList<E> implements URList<E>{
 			thir.setNext(first);
 			first.setPrev(thir);
 			secn.setNext(thir);
-			
-			
-			
-			
-			
+	
 		first.setElement(element);
 		}
 		size+=1-c;

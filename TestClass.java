@@ -11,11 +11,10 @@ public class TestClass {
 
 
 
-<<<<<<< HEAD
-		list.add(2,4);
 
-=======
->>>>>>> b517ad308a18feb77f971c3e867e38d01e4deb90
+		list.add(1,4);
+
+
 		System.out.println(list.size());
 	
 
