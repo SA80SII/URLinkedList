@@ -1,12 +1,14 @@
 import java.util.Collection;
+
 import java.util.Iterator;
-
-public class URLinkedList<E> implements URList{
-
+public class URLinkedList<E> implements URList<E>{
+	 transient URNode<E> first;
+	 transient URNode<E> last;
+	 transient int size = 0;
+	 
+	 
 	@Override
-	public boolean add(Object e) {
-		//I am making a change
-		// TODO Auto-generated method stub
+	public boolean add(E e) {
 		return false;
 	}
 
@@ -71,7 +73,7 @@ public class URLinkedList<E> implements URList{
 	}
 
 	@Override
-	public Object remove(int index) {
+	public E remove(int index) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -113,12 +115,22 @@ public class URLinkedList<E> implements URList{
 	}
 	// Inserts the specified element at the beginning of this list.
 	public void addFirst(E e) {
+		final URNode<E> f = first;
+		final URNode<E> newNode = new URNode<E>(e,null,f);
+		first = newNode;
+		if (f==null) {
+			last = newNode;
+		}
+		else {
+			f.setPrev(newNode);
+		}
+		size++;
 		
 	}
 	// Appends the specified element to the end of this list.
 	public void addLast(E e) {
-		
 	}
+	
 	// Retrieves, but does not remove, the first element of this list, or returns null if this list is empty.
 	public  E  peekFirst() {
 		return null;
