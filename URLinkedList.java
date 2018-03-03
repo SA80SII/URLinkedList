@@ -33,13 +33,23 @@ public class URLinkedList<E> implements URList<E>{
 			secn = tail.prev();
 		}
 		else {
-			URLinkedListIterator i = new URLinkedListIterator();
+			first=head;
 			int counter=0;
+			URLinkedListIterator i = new URLinkedListIterator();
+			first=head;
 			while (i.hasNext()==true && counter<index){
 				counter++;
-				first.next();
+				first = first.next();
 			}
+			
 			secn=first.prev();
+			thir=new URNode<E>(null,null);
+			thir.setElement(element);
+			thir.setPrev(secn);
+			thir.setNext(first);
+			first.setPrev(thir);
+			secn.setNext(thir);
+	
 			thir.prev()=secn;
 			
 			
@@ -142,6 +152,9 @@ public class URLinkedList<E> implements URList<E>{
 
 	@Override
 	public E remove(int index) {
+		// TODO Auto-generated method stub
+		URNode<E> rem;
+		return null;
 		URNode<E> curr = head;
 		int i = 0;
 		while(i != index-1) {
@@ -156,6 +169,8 @@ public class URLinkedList<E> implements URList<E>{
 
 	@Override
 	public boolean remove(Object o) {
+		// TODO Auto-generated method stub
+		return false;
 		remove(o);
 		return true;
 	}
