@@ -1,7 +1,7 @@
 import java.util.Collection;
 import java.util.Iterator;
 
-public class URArrayList implements URList{
+public class URArrayList<E> implements URList<E>{
 
 	@Override
 	public boolean add(Object e) {
