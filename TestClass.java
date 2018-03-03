@@ -9,7 +9,6 @@ public class TestClass {
 		list.add(1);
 		list.add(2);
 		list.add(3);
-<<<<<<< HEAD
 		list.add(99999);
 
 
@@ -18,11 +17,10 @@ public class TestClass {
 		list.add(1,4);
 
 
-=======
+
 		list.add(4);
 		list.add(5);
 		System.out.println(list.get(0));
->>>>>>> 02ece94df873107f31e4e777aa360aa11e9ba1a5
 		System.out.println(list.size());
 	
 
