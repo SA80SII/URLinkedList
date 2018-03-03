@@ -11,7 +11,7 @@ public class TestClass {
 
 
 
-		list.add(0,4);
+		list.add(2,4);
 
 		System.out.println(list.size());
 	
