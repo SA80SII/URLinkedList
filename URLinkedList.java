@@ -7,17 +7,60 @@ public class URLinkedList<E> implements URList<E>{
 	 transient int size = 0;
 	 
 	 
-	@Override
-	public boolean add(E e) {
-		addLast(e);
-		return true;
-	}
+	 @Override
+		public boolean add(E e) {
+			addLast(e);
+			return true;	
+		}
 
-	@Override
-	public void add(int index, Object element) {
-		// TODO Auto-generated method stub
+		@Override
+
+		public void add(int index, E element) {
+
+			URNode<E> first = new URNode<E>(null,null,null);
+			URNode<E> secn = new URNode<E>(null,null,null);
+			URNode<E> thir = new URNode<E>(null,null,null);
+			int c=0;
+			if (index!=0&&(index<0||index>=size())){
+				c++;
+				throw new IndexOutOfBoundsException();		
+			}
+			if (index==0){
+				first=head;
+				secn=new URNode<E>(element,null,first);
+				first.setPrev(secn);
+				head=secn;
+			}
+			
+			else if (index==(size()-1)){
+				first=tail.prev();
+				secn=new URNode<E>(element,first,tail);
+				first.setNext(secn);
+				tail.setPrev(secn);
+			}
+			else {
+				first=head;
+				int counter=0;
+				URLinkedListIterator i = new URLinkedListIterator();
+				first=head;
+				while (i.hasNext()==true && counter<index){
+					counter++;
+					first = first.next();
+				}
+				
+				secn=first.prev();
+				thir=new URNode<E>(null,null);
+				thir.setElement(element);
+				thir.setPrev(secn);
+				thir.setNext(first);
+				first.setPrev(thir);
+				secn.setNext(thir);
 		
-	}
+			first.setElement(element);
+			}
+			size+=1-c;
+			
+		}
 
 	@Override
 	public boolean addAll(Collection c) {
@@ -51,8 +94,21 @@ public class URLinkedList<E> implements URList<E>{
 
 	@Override
 	public E get(int index) {
-		// TODO Auto-generated method stub
-		return null;
+	if(head== null) {
+		throw new NoSuchElementException();
+	}
+	URNode<E> curr = head;
+	if (index < 0 || index >= size) {
+		throw new IndexOutOfBoundsException();
+	}
+	else {
+		int i = 0;
+		while(i != index) {
+			curr = curr.next();
+			i++;
+		}
+		return curr.element();		
+	}
 	}
 
 	@Override
@@ -69,20 +125,52 @@ public class URLinkedList<E> implements URList<E>{
 
 	@Override
 	public Iterator iterator() {
-		// TODO Auto-generated method stub
-		return null;
+		return new URLinkedListIterator();
+	}
+	
+	private class URLinkedListIterator implements Iterator<E> {
+		URNode<E> curr;
+		public URLinkedListIterator() {
+			curr = head;
+		}
+
+		@Override
+		public boolean hasNext() {
+			if(curr.next() != null){
+				return true;
+			}
+		return false;
+		}
+
+		@Override
+		public E next() {
+			if(hasNext()){
+				curr = curr.next();
+			}
+			return curr.element();
+		}
+		
 	}
 
 	@Override
 	public E remove(int index) {
-		// TODO Auto-generated method stub
-		return null;
+		URNode<E> curr = head;
+		int i = 0;
+		while(i != index-1) {
+			curr = curr.next();
+			i++;
+		}
+		
+		// need an if statement
+		curr.setNext(curr.next().next());	
+		size--;
+		return curr.element();
 	}
 
 	@Override
 	public boolean remove(Object o) {
-		// TODO Auto-generated method stub
-		return false;
+		remove(o);
+		return true;
 	}
 
 	@Override
@@ -100,7 +188,7 @@ public class URLinkedList<E> implements URList<E>{
 	@Override
 	public int size() {
 		// TODO Auto-generated method stub
-		return 0;
+		return size;
 	}
 
 	@Override
@@ -111,33 +199,39 @@ public class URLinkedList<E> implements URList<E>{
 
 	@Override
 	public Object[] toArray() {
-		// TODO Auto-generated method stub
-		return null;
+		Object [] array = new Object[size];
+		URNode<E> f = head;
+		for(int i = 0; i< size; i++) {
+			array[i] = f.element();
+			f = f.next();
+		}
+		return array;
 	}
+	// In
 	// Inserts the specified element at the beginning of this list.
 	public void addFirst(E e) {
 		final URNode<E> f = head;
 		final URNode<E> newNode = new URNode<E>(e,null,f);
 		head = newNode;
-		if (f==null) {
-			tail = newNode;
+		if (head==null) {
+			head=tail = newNode;
 		}
 		else {
-			f.setPrev(newNode);
+			head.setPrev(newNode);
 		}
 		size++;
 		
 	}
 	// Appends the specified element to the end of this list.
 	public void addLast(E e) {
-		final URNode<E> t = tail;
-		final URNode<E> newNode = new URNode<E>(e,t,null);
-		tail = newNode;
-		if (t == null) {
-			tail = newNode;	
+		URNode<E> newNode = new URNode<E>(e,tail,null);
+		if (head == null) {
+			head = newNode;	
+			tail = head;
 		}
 		else {
-		t.setNext(newNode);
+		tail.setNext(newNode);
+		tail = newNode;
 		}
 		size++;
 	}
