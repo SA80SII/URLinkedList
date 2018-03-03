@@ -91,7 +91,7 @@ public class URLinkedList<E> implements URList<E>{
 		// TODO Auto-generated method stub
 		return false;
 	}
-
+///asd
 	@Override
 	public E get(int index) {
 	if(head== null) {
